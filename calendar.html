@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      main {
+        width: 100%;
+        min-height: 100vh;
+        position: relative;
+        top: 6rem;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      .navbar1 {
+        position: fixed;
+        top: -5px;
+        width: 100%;
+        left: 0;
+        z-index: 10;
+      }
+      .dropdown:hover > .dropdown-menu {
+        display: block;
+      }
+
+      .dropdown > .dropdown-toggle:active {
+        pointer-events: none;
+      }
+      .item1 {
+        height: 40px;
+        width: 105px;
+        border-radius: 10px;
+        transition: 0.1s ease-in all;
+        background-color: #e3f2fd;
+      }
+      .item1:hover {
+        background-color: #5672bc;
+        color: whitesmoke;
+      }
+      .text_2 {
+        width: 110px;
+        height: 40px;
+        background: darkred;
+        border-radius: 12px;
+        color: white;
+        font-weight: 500;
+      }
+      .text_2:hover {
+        color: black;
+        border-radius: 2px solid green;
+      }
+      .footer-text {
+        text-decoration: none;
+      }
+      .contact-form {
+        max-width: 80%;
+        width: 100%;
+        font-size: small;
+        text-align: justify;
+      }
+      .form-control {
+        background-color: whitesmoke;
+        font-size: small;
+      }
+      .contact-heading {
+        padding: 1rem;
+      }
+      .contact-heading h1 {
+        margin-bottom: 1rem;
+      }
+      .calender {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+      }
+      .calender-text h1 {
+        font-weight: 700;
+      }
+      .calender-text p {
+        font-size: small;
+      }
+      .calender-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        background: #5f9ea030;
+        align-items: center;
+        padding: 15px !important;
+      }
+      .calender-img img {
+        width: 100%;
+        height: auto;
+      }
+      .calender .btn {
+        background: transparent;
+        padding: 0.5rem 1.5rem;
+        border-radius: 13px;
+        color: black;
+        border-radius: 50px;
+        box-shadow: 2px 2px 2px 2px rgb(192, 167, 167);
+      }
+      .calender.cal-btn {
+        display: flex;
+        gap: 10px;
+      }
+      .calender .btn:hover {
+        background: darkcyan;
+      }
+      .calender .col-md-6 {
+        padding: 0;
+      }
+      .calender-appoinment {
+        padding: 100px 0;
+      }
+      .card {
+        background: url(./image/appoinment.jpg);
+        background-size: cover;
+        object-position: center;
+        object-fit: contain;
+      }
+      .card-title {
+        justify-content: center;
+        background-color: #f8f9fab5;
+      }
+      .card-text h1 {
+        font-weight: 800;
+        color: azure;
+        text-shadow: 0px 2px 7px black;
+      }
+      .card-text p {
+        color: azure;
+        text-shadow: 0px 2px 7px black;
+      }
+      .appoi-calendar h3 {
+        font-weight: 800;
+        color: rgb(0, 0, 0);
+        text-shadow: 0px 2px 7px rgb(255, 255, 255);
+      }
+      .appoi-box {
+        /* background-image: url(./image/appoinment-form.jpg); */
+        background-size: cover;
+        object-position: center;
+        object-fit: contain;
+      }
+      
+      .card-footer {
+        background-color: #f8f9fab5;
+        padding: 10px 20px;
+        border-top: 1px solid #dee2e6;
+        justify-content: center;
+      }
+
+      .card-footer .btn {
+        margin-right: 10px;
+        clip-path: circle(50%);
+        background-color: black;
+        border: none;
+      }
+      .card-footer .btn:hover{
+        filter: drop-shadow(2px 2px 1px black);
+        background-color: transparent;
+        transform: scale(1.5);
+      }
+      .appoi-calendar .btn{
+        background: transparent;
+        padding: 0.5rem 2rem;
+        border-radius: 13px;
+        color: black;
+        border-radius: 50px;
+        box-shadow: 2px 2px 2px 2px rgb(192, 167, 167);
+      }
+      .appoi-calendar .btn:hover {
+        background: darkcyan;
+      }
+      .appoi-calendar {
+        margin-top: 50px;
+      }
+      .calendar {
+        margin-bottom: 50px;
+      }
+
+      @media only screen and (max-width: 1023px) and (min-width: 768px) {
+        .calender-text {
+          padding: 10px;
+        }
+        .calender-text h1 {
+          font-size: 2rem;
+        }
+        .calender-text p {
+          font-size: x-small;
+        }
+        .calender.cal-btn {
+          display: flex;
+          gap: 1rem;
+        }
+        .calender .btn {
+          padding: 0.4rem 1rem;
+          font-size: small;
+        }
+        .card-text h1 {
+          font-size: x-large;
+          font-weight: 800;
+          color: azure;
+          text-shadow: 0px 2px 7px black;
+        }
+        .appoi-calendar .btn{
+        background: transparent;
+        padding: 0.5rem 2rem;
+        border-radius: 13px;
+        color: black;
+        font-size: small;
+        border-radius: 50px;
+        box-shadow: 2px 2px 2px 2px rgb(192, 167, 167);
+      }
+      }
+
+      @media only screen and (max-width: 767px) and (min-width: 576px) {
+        .calender.col-md-6 {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+        .calender-text h1 {
+          font-size: 2rem;
+        }
+        .calender-text p {
+          font-size: x-small;
+        }
+        .calender .cal-btn {
+          display: flex;
+          gap: 1rem;
+        }
+        .calender .btn {
+          padding: 0.4rem 1rem;
+          font-size: small;
+        }
+        .card-text h1 {
+          font-size: xx-large;
+          font-weight: 800;
+          color: azure;
+          text-shadow: 0px 2px 7px black;
+        }
+        .appoi-calendar .btn{
+        background: transparent;
+        padding: 0.5rem 2rem;
+        border-radius: 13px;
+        color: black;
+        font-size: x-small;
+        border-radius: 50px;
+        box-shadow: 2px 2px 2px 2px rgb(192, 167, 167);
+      }
+      }
+      @media only screen and (min-width: 425px) and (max-width: 576px) {
+        .calender-text h1 {
+          font-size: 1rem;
+        }
+        .calender-text p {
+          font-size: x-small;
+        }
+        .calender .cal-btn {
+          display: grid;
+          grid-gap: 10px;
+        }
+        .calender .btn {
+          padding: 0.4rem 1rem;
+          font-size: small;
+        }
+        .card-text h1 {
+          font-size: x-large;
+          font-weight: 800;
+          color: azure;
+          text-shadow: 0px 2px 7px black;
+        }
+        .appoi-calendar .btn{
+        background: transparent;
+        padding: 0.5rem 2rem;
+        border-radius: 13px;
+        color: black;
+        font-size: small;
+        border-radius: 50px;
+        box-shadow: 2px 2px 2px 2px rgb(192, 167, 167);
+      }
+      .box1 {
+          max-width: 250px;
+          height: 100px;
+          margin: auto;
+        }
+        .box1 .image img {
+          height: 40px !important;
+          margin-top: 10px !important;
+          padding: 0;
+          max-width: 50px;
+          width: 100% !important;
+        }
+        .box1 h2 {
+          font-size: xx-small !important;
+        }
+      }
+      @media only screen and (max-width: 424px) and (min-width: 150px) {
+        .calender-text h1 {
+          font-size: 1rem;
+        }
+        .calender-text p {
+          font-size: x-small;
+        }
+        .calender .cal-btn {
+          display: grid;
+          grid-gap: 10px;
+        }
+        .calender .btn {
+          padding: 0.4rem 1rem;
+          font-size: small;
+        }
+        .card-text h1 {
+          font-size: large;
+          font-weight: 800;
+          color: azure;
+          text-shadow: 0px 2px 7px black;
+        }
+        .appoi-calendar .btn{
+        background: transparent;
+        padding: 0.5rem 2rem;
+        border-radius: 13px;
+        color: black;
+        font-size: x-small;
+        border-radius: 50px;
+        box-shadow: 2px 2px 2px 2px rgb(192, 167, 167);
+      }
+      .box1 {
+          max-width: 250px;
+          height: 100px;
+          margin: auto;
+        }
+        .box1 .image img {
+          height: 40px !important;
+          margin-top: 10px !important;
+          padding: 0;
+          max-width: 50px;
+          width: 100% !important;
+        }
+        .box1 h2 {
+          font-size: xx-small !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+        <!-- navbar start -->
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg navbar1 mt-1"style="background-color: #ffffff;">
+          <div class="container">
+            <a class="navbar-brand" href="#"><img src="image/logo-3.png" class="img-fluid" style="width: 245px;
+            height: 60px;     margin-left: -10px;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div class="container">
+              <ul class="navbar-nav ml-auto " style="justify-content: end;">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="solution.html" role="button" data-bs-toggle="dropdown" >
+                    Services
+                  </a>
+                  <ul class="dropdown-menu bg-dark">
+                    <li><a class="dropdown-item text-white bg-dark" href="#">Managed Services</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-white bg-dark" href="./IT Outsourcing.html">IT Support</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-white bg-dark" href="#">Data Backup and Recovery</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-white bg-dark" href="#">Cybersecurity</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-white bg-dark" href="#">Cloud Services</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-white bg-dark" href="./multi-platfrom.html">Multiplatform Support</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-white bg-dark" href="./help-desk.html">Help Desk</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-white bg-dark" href="./it-consulting.html">IT Consulting</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-white bg-dark" href="./Business Phone Systems.html">Business Phone Systems</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-white bg-dark" href="./Web Devlopment.html">Web Devlopment</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./why-itekcloud.html">IT Outsourcing</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="solution.html" role="button" data-bs-toggle="dropdown" >
+                    Resources
+                  </a>
+                  <ul class="dropdown-menu bg-dark">
+                    <li><a class="dropdown-item text-white bg-dark" href="#">Blog</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-white bg-dark" href="#">Event</a></li>
+                  </ul>
+                <li class="nav-item">
+                  <a class="nav-link" href="./about.html">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./contact.html">Contact Us</a>
+                </li>
+                <li class="nav-item item1">
+                  <a class="nav-link text_2" href="#contact">Get In Touch</a>
+                </li>
+              </ul>
+            </div>
+            </div>
+            
+            </div>
+          </div>
+        </nav>
+        </div>
+         <!-- navbar end -->
+    <!-- start main  -->
+    <main>
+      <div class="container-fluid calender">
+        <div class="row">
+          <div class="col-md-6 calender-text">
+            <h1>
+              Tired of dealing with <span style="color: orangered">IT</span
+              ><br />problems?
+            </h1>
+            <p>
+              Let us help you. Your IT investment should add to business growth,
+              not expenses.
+            </p>
+            <div class="cal-btn">
+              <button type="button" class="btn btn-danger">
+                <a
+                  href="./contact.php"
+                  style="text-decoration: none; color: black"
+                  class="a-1"
+                  >Meet an Advisor</a
+                >
+              </button>
+              <button type="button" class="btn btn-danger">
+                <a
+                  href="./contact.php"
+                  style="text-decoration: none; color: black"
+                  class="a-1"
+                  >Get in touch</a
+                >
+              </button>
+            </div>
+          </div>
+          <div class="col-md-6 calender-img">
+            <img src="./image/about-bg.jpg" alt="" />
+          </div>
+        </div>
+      </div>
+      <!-- calendar appoiment start -->
+      <div class="container calender-appoinment">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <div
+                  class="card-title"
+                  style="display: flex; justify-content: center"
+                >
+                  <img
+                    src="./image/logo iTeack.png"
+                    class="img-fluid"
+                    alt="logo"
+                  />
+                </div>
+                <hr />
+                <div class="card-text" style="padding: 4rem 1rem">
+                  <p>Genatec</p>
+                  <h1>Genatec | Dicovery Call(EN)</h1>
+                  <p>
+                    On this short call, we will discuss initial Questions and
+                    pain points to see how Genatec Can help your business.
+                  </p>
+                </div>
+                <div class="card-footer">
+                  <div class="d-flex justify-content-center">
+                    <a href="#" class="btn btn-primary"
+                      ><i class="fab fa-linkedin"></i
+                    ></a>
+                    <a href="tel:+1234567890" class="btn btn-primary"
+                      ><i class="fas fa-phone"></i
+                    ></a>
+                    <a href="#" class="btn btn-primary"
+                      ><i class="fab fa-instagram"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 appoi-box">
+            <div class="container appoi-calendar">
+              <h3 class="text-center">Select Date & Time</h3>
+
+              <!-- Calendar section -->
+              <div class="row justify-content-center appoi-calendar">
+                <div class="col-md-8">
+                  <!-- Placeholder for the appointment calendar -->
+                  <div id="calendar"></div>
+                </div>
+              </div>
+
+              <!-- Form section -->
+              <div class="row justify-content-center">
+                <div class="col">
+                  <!-- Appointment booking form -->
+                  <form class="appo-form">
+                    <div class="mb-3">
+                      <label for="name" class="form-label">Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="name"
+                        placeholder="Enter your name"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Email</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="date" class="form-label"
+                        >Appointment Date</label
+                      >
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="date"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="time" class="form-label"
+                        >Appointment Time</label
+                      >
+                      <input
+                        type="time"
+                        class="form-control"
+                        id="time"
+                        required
+                      />
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                      <button type="submit" class="btn">
+                        Book Appointment
+                      </button>
+                    </div>
+                   
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- calendar end -->
+    </main>
+    <!-- end main -->
+      <!-- More Services start -->
+      <div class="container" style="margin-top:100px;">
+        <h1 class="text-center" style=" font-weight: 600;">More Services Provide By Us : </h1>
+      </div>
+      
+      <div class="container m-service" style="margin-top:80px;">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-6" style="margin-top:30px;">
+            <a href="" style="text-decoration: none;"> <div class="p-1 shadow box1" style="border-radius: 25px;">
+            <div class="image d-flex align-items-center justify-content-center">
+            <img src="image/sevices-1.png" class="img-fluid mt-5" style="width: 70px; height: 66px;">
+              </div>
+            <h2 class="text-center mt-4 mb-5" style="font-size:18px; color: black;">Managed Services</h2>
+          </div></a>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6" style="margin-top:30px;">
+          <a href="" style="text-decoration: none;"><div class="p-1 shadow  box1" style="border-radius: 25px;">
+            <div class="image d-flex align-items-center justify-content-center">
+            <img src="image/services-2.png" class="img-fluid mt-5" style="width: 80px;height: 66px;">
+              </div>
+            <h2 class="text-center mt-4 mb-5" style="font-size:18px; color: black;">IT Support</h2>
+          </div></a>
+        </div>
+          <div class="col-lg-3 col-md-6 col-sm-6" style="margin-top:30px;">
+          <a href="" style="text-decoration: none;"><div class="p-1 shadow  box1" style="border-radius: 25px;">
+            <div class="image d-flex align-items-center justify-content-center">
+            <img src="image/services-3.png" class="img-fluid mt-5" style="width: 85px;height: 66px;">
+              </div>
+            <h2 class="text-center mt-4 mb-5" style="font-size:18px; color: black;">Data Backup and Recovery</h2>
+          </div></a>
+        </div>
+          <div class="col-lg-3 col-md-6 col-sm-6" style="margin-top:30px;">
+          <a href="" style="text-decoration: none;"><div class="p-1 shadow  box1" style="border-radius: 25px;">
+            <div class="image d-flex align-items-center justify-content-center">
+            <img src="image/services-4.png" class="img-fluid mt-5" style="width:60px; height: 66px;">
+              
+          </div>
+            <h2 class="text-center mt-4 mb-5" style="font-size:18px; color: black;">Cybersecurity</h2>
+          </div></a>
+        </div>
+        </div>
+      
+        <div class="row" style="margin-top: 50px;">
+        <a href="" style="text-decoration: none;"><div class="col-lg-3 col-md-6 col-sm-6" style="margin-top:30px;">
+            <div class="p-1 shadow  box1" style="border-radius: 25px;">
+            <div class="image d-flex align-items-center justify-content-center">
+            <img src="image/services-5.png" class="img-fluid mt-5" style="width: 80px; height: 66px;">
+              </div>
+            <h2 class="text-center mt-4 mb-5" style="font-size:18px; color: black;">Cloud Services</h2>
+          </div></a>
+          </div>
+          <!-- <div class="col-lg-3 col-md-6 col-sm-12" style="margin-top:30px;">
+          <a href="" style="text-decoration: none;"><div class="p-1 shadow  box1" style="border-radius: 25px;">
+            <div class="image d-flex align-items-center justify-content-center">
+            <img src="image/services-6.png" class="img-fluid mt-5" style="width:80px; height: 66px;">
+              </div>
+            <h2 class="text-center mt-4 mb-5" style="font-size:18px; color: black;">Multiplatform Support</h2>
+          </div></a>
+        </div> -->
+        <div class="col-lg-3 col-md-6 col-sm-6 " style="margin-top:30px;">
+           <a href="" style="text-decoration: none;"><div class="p-1 shadow  box1" style="border-radius: 25px;">
+            <div class="image d-flex align-items-center justify-content-center">
+            <img src="image/services-10.png" class="img-fluid mt-5" style="width:70px; height: 66px;">
+              </div>
+            <h2 class="text-center mt-4 mb-5" style="font-size:18px; color: black;">Business Phone Systems</h2>
+          </div></a>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6" style="margin-top:30px;">
+           <a href="./help-desk.html" style="text-decoration: none;">	<div class="p-1 shadow  box1" style="border-radius: 25px;">
+            <div class="image d-flex align-items-center justify-content-center">
+            <img src="image/services-8.png" class="img-fluid mt-5" style="width:100px; height: 66px;">
+              </div>
+            <h2 class="text-center mt-4 mb-5" style="font-size:18px; color: black;">Help Desk</h2>
+          </div></a>
+        </div>
+          <div class="col-lg-3 col-md-6 col-sm-6" style="margin-top:30px;">
+          <a href="./it-consulting.html" style="text-decoration: none;"><div class="p-1 shadow  box1" style="border-radius: 25px;">
+            <div class="image d-flex align-items-center justify-content-center">
+            <img src="image/services-13.png" class="img-fluid mt-5" style="width:90px; height: 66px;">
+              
+          </div>
+            <h2 class="text-center mt-4 mb-5" style="font-size:18px; color: black;">IT Consulting</h2>
+          </div></a>
+        </div>
+        </div>
+      
+        <div class="row" style="margin-top:50px; margin-bottom:100px; display: flex; justify-content: center;">
+          
+          <div class="col-lg-3 col-md-6 col-sm-6" style="margin-top:30px;">
+          <a href="" style="text-decoration: none;"><div class="p-1 shadow  box1" style="border-radius: 25px;">
+            <div class="image d-flex align-items-center justify-content-center">
+            <img src="image/services-12.png" class="img-fluid mt-5" style="width:80px; height: 66px;">
+              </div>
+            <h2 class="text-center mt-4 mb-5" style="font-size:18px; color: black;">Web Devlopment</h2>
+          </div></a>
+        </div>
+        </div>
+      </div>
+      <!-- More Services end -->
+        <!-- contact Let's Get start -->
+    <div
+    class="container contact-form"
+    style="margin-top: 90px"
+    id="get-in-touch"
+  >
+    <div class="contact-heading">
+      <h1 class="text-center" style="color: red; font-weight: 700">
+        Let's Get Started
+      </h1>
+      <p class="text-center" style="font-size: 17px">
+        Connect with us today and let us do the hard work for you! Fill our
+        the form and we will<br />
+        be in touch shortly, or
+        <a
+          href="tel:9328680910"
+          target="_blank"
+          style="text-decoration: none; color: red"
+        >
+          give us a call now!</a
+        >
+      </p>
+    </div>
+    <form id="emailForm" onsubmit="validateEmail(event)">
+      <div class="row mb-4">
+        <div class="col">
+          <div data-mdb-input-init class="form-outline">
+            <!-- <label class="form-label" for="form6Example1">First name</label> -->
+            <input type="text" id="form6Example1" class="form-control"
+            placeholder="First name" / required>
+          </div>
+        </div>
+        <div class="col">
+          <div data-mdb-input-init class="form-outline">
+            <!-- <label class="form-label" for="form6Example2">Last name</label> -->
+            <input type="text" id="form6Example2" class="form-control"
+            placeholder="Last name"/ required>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col">
+          <div data-mdb-input-init class="form-outline">
+            <!-- <label class="form-label" for="form6Example1">Phone Number</label> -->
+            <input
+              type="text"
+              id="form6Example1"
+              class="form-control"
+              placeholder="Enter Your Number"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div data-mdb-input-init class="form-outline">
+            <!-- <label class="form-label" for="form6Example2">Email</label> -->
+            <input type="email" id="form6Example2" class="form-control"
+            placeholder="Enter Your Email"/ required>
+            <small
+              id="emailHelp"
+              class="form-text text-muted"
+              style="margin-left: 12px"
+              >We'll never share your email with anyone else.</small
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col">
+          <div data-mdb-input-init class="form-outline">
+            <!-- <label class="form-label" for="form6Example1">Company Name</label> -->
+            <input
+              type="text"
+              id="form6Example1"
+              class="form-control"
+              placeholder="Company Name"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div data-mdb-input-init class="form-outline">
+            <!-- <label class="form-label" for="form6Example2">Number of Employees</label> -->
+            <input
+              type="text"
+              id="form6Example2"
+              class="form-control"
+              placeholder="Number of Employees"
+              id="emailInput"
+            />
+          </div>
+        </div>
+      </div>
+      <div data-mdb-input-init class="form-outline mb-4">
+        <!-- <label class="form-label" for="form6Example3">What would You like to Improve ?</label> -->
+        <input
+          type="text"
+          id="form6Example3"
+          class="form-control"
+          placeholder="What would You like to Improve ?"
+        />
+      </div>
+
+      <div data-mdb-input-init class="form-outline mb-4">
+        <!-- <label class="form-label" for="form6Example4">Country</label> -->
+        <input type="text" id="form6Example4" class="form-control"
+        placeholder="Country"/ required>
+      </div>
+
+      <div data-mdb-input-init class="form-outline mb-4">
+        <!-- <label class="form-label" for="form6Example5">Where did you her about us?</label> -->
+        <input
+          type="email"
+          id="form6Example5"
+          class="form-control"
+          placeholder="Where did you her about us?"
+        />
+      </div>
+
+      <div data-mdb-input-init class="form-outline mb-2">
+        <!-- <label class="form-label" for="form6Example7"
+          >Additional information</label> -->
+        <textarea
+          class="form-control"
+          id="form6Example7"
+          rows="4"
+          placeholder="Message"
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-danger btn3 mt-4 mb-4"
+        style="width: 100%"
+      >
+        Let's Get Started
+      </button>
+    </form>
+  </div>
+  <!-- contact Let's Get end -->
+  <!-- footer start -->
+  <div class="container-fluid">
+    <footer
+            class="text-center text-lg-start text-white" style="background-color: #45526e; border-radius: 60px 60px 0px 0px; margin-top: 60px;">
+      
+      <div class="container-fluid p-4 pb-0">
+        <section class="">
+  
+          <div class="row">
+            <div class="col-md-3 col-lg-2 col-xl-3 mx-auto mt-3">
+              <h4 class=" mb-4 font-weight-bold"><a class="text-white" style="text-decoration: none;" href="./index.html">
+                ITeKloud</a>
+              </h4>
+              <p>
+                We collaboratively deliver technology solutions that integrate and optimize your processes and technology for cost-effective digital transformation.
+              </p>
+            </div>
+            <hr class="w-100 clearfix d-md-none" />
+  
+            <div class="col-md-6 col-lg-2 col-xl-2 mx-auto mt-3">
+              <h4 class="text-uppercase mb-4 font-weight-bold"><a class="text-white" style="text-decoration: none;" href="#">
+                Company</a>
+              </h4>
+              <p>
+                <a class="text-white footer-text" href="#">About</a>
+              </p>
+              <p>
+                <a class="text-white footer-text" href="#">Accolades & Recognition</a>
+              </p>
+              <p>
+                <a class="text-white footer-text" href="#">Partner Ecosystem</a>
+              </p>
+              <p>
+                <a class="text-white footer-text" href="#">Careers</a>
+              </p>
+            </div>
+  
+            <hr class="w-100 clearfix d-md-none" />
+  
+            <div class="col-md-6 col-lg-2 col-xl-2 mx-auto mt-3">
+              <h4 class="text-uppercase mb-4 font-weight-bold"><a class="text-white" style="text-decoration: none;" href="./solution.html">Services</a></h4>
+              <p>
+                <a class="text-white footer-text" href="#">Managed Services</a>
+              </p>
+              <p>
+                <a class="text-white footer-text" href="#cybersecurityexperts">Cyber Security </a>
+              </p>
+              <p>
+                <a class="text-white footer-text" href="#">Cloud Services</a>
+              </p>
+              <p>
+                <a class="text-white footer-text" href="#">Web Devlopment</a>
+              </p>
+  
+            </div>
+  
+            <hr class="w-100 clearfix d-md-none" />
+  
+            <div class="col-md-6 col-lg-2 col-xl-2 mx-auto mt-3">
+              <h4 class="text-uppercase mb-4 font-weight-bold"><a class="text-white" style="text-decoration: none;" href="#">
+                Resources</a>
+              </h4>
+              <p>
+                <a class="text-white footer-text" href="./why-itekcloud.html">It Outsourcing</a>
+              </p>
+              <p>
+                <a class="text-white footer-text" href="./packages.html">Blog</a>
+              </p>
+              <p>
+                <a class="text-white footer-text" href="./about.html">About Us</a>
+              </p>
+              <p>
+                <a class="text-white footer-text" href="./contact.html">Contact Us</a>
+              </p>
+            </div>
+            <hr class="">
+  
+            
+            <hr class="w-100 clearfix d-md-none" />
+            <div class="row">
+              <div class="col-md-3 col-lg-2 col-xl-3 mx-auto mt-3">
+              <h4 class="text-uppercase mb-4 font-weight-bold">
+                connect with us
+              </h4>
+              <p>you can visit following links to our site and connect with us.</p>
+              <a
+                 class="btn btn-outline-light btn-floating m-1"
+                 class="text-white"
+                 role="button"
+                 ><i class="bi bi-facebook"></i>
+                </a>
+              <a
+                 class="btn btn-outline-light btn-floating m-1"
+                 class="text-white"
+                 role="button"
+                 ><i class="bi bi-twitter-x"></i></a>
+              <a
+                 class="btn btn-outline-light btn-floating m-1"
+                 class="text-white"
+                 role="button"
+                 ><i class="bi bi-google"></i></a>
+              <a
+                 class="btn btn-outline-light btn-floating m-1"
+                 class="text-white"
+                 role="button"
+                 ><i class="bi bi-instagram"></i></a>
+            </div>
+            <div class="col-md-6 col-lg-2 col-xl-2 mx-auto mt-3">
+              <h5 class="text-uppercase mb-4 font-weight-bold">Address</h5>
+              <p><i class="fa fa-home mr-3"></i> New York, NY 10012, US</p>
+            </div>
+            <hr class="w-100 clearfix d-md-none" />
+            <div class="col-md-6 col-lg-2 col-xl-2 mx-auto mt-3">
+              <h5 class="text-uppercase mb-4 font-weight-bold">E-Mail</h5>
+              <p><i class="fa fa-envelope mr-3" style="margin-right: 5px;"></i>info@gmail.com</p>
+            </div>
+              <hr class="w-100 clearfix d-md-none" />
+            <div class="col-md-6 col-lg-2 col-xl-2 mx-auto mt-3">
+              <h5 class="text-uppercase mb-4 font-weight-bold">Phone Numbers :</h5>
+              <p><i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>
+              <p><i class="fa fa-phone mr-3"></i> + 01 234 567 89</p>
+              </div>
+            </div>
+            </div>
+          </div>
+        </section>
+        <hr class="my-3">
+        <section class="p-3 pt-0">
+          <div class="row d-flex align-items-center">
+            <div class="col-md-12 col-lg-12 text-center text-md-start">
+              <div class="p-3 text-center">
+                © 2024 Copyright : All rights reserved. | Site Map | Privacy Policy By
+                <a class="text-white footer-text" href="#">ITekCloud.</a
+                  >
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </footer>
+  </div>
+  <!-- footer end -->
+   <!-- <script>
+    // let from=document.querySelector('form')
+    let button = document.querySelector(".btn");
+    from.addEventListener("onsubmit", function () {
+      alert(
+        "Thank you for choosing ITeKloud We will be Connect you shortly."
+      );
+    });
+  </script> -->
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="your-fullcalendar-js-file.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('appointmentForm');
+    
+        form.addEventListener('submit', function(event) {
+          event.preventDefault();
+    
+          const name = document.getElementById('name').value;
+          const email = document.getElementById('email').value;
+          const date = document.getElementById('date').value;
+          const time = document.getElementById('time').value;
+    
+          // Example: Send form data to a backend endpoint using Fetch API
+          fetch('your-backend-endpoint', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              name: name,
+              email: email,
+              date: date,
+              time: time
+            })
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            // Handle successful response from the server
+            console.log('Appointment booked successfully:', data);
+            // Clear form fields
+            form.reset();
+          })
+          .catch(error => {
+            // Handle errors
+            console.error('There was a problem with your fetch operation:', error);
+          });
+        });
+      });
+
+    // let from=document.querySelector('form')
+    let button = document.querySelector(".btn");
+    from.addEventListener("onsubmit", function () {
+      alert(
+        "Thank you for choosing ITeKloud We will be Connect you shortly."
+      );
+    });
+    </script>
+  </body>
+</html>
