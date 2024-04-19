@@ -16,8 +16,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
-
-    <style>
+    <link rel="stylesheet" href="calender.css">
+    <!-- <style>
       * {
         margin: 0;
         padding: 0;
@@ -182,6 +182,15 @@
         filter: drop-shadow(2px 2px 1px black);
         background-color: transparent;
         transform: scale(1.5);
+        animation: cardbtn .7s infinite alternate;
+      }
+      @keyframes cardbtn {
+        0%{
+          transform: rotate(0deg) scale(0);
+        }
+        10%{
+          transform: rotate(45deg) scale(1.5);
+        }
       }
       .appoi-calendar .btn{
         background: transparent;
@@ -363,7 +372,7 @@
           font-size: xx-small !important;
         }
       }
-    </style>
+    </style> -->
   </head>
   <body>
         <!-- navbar start -->
@@ -980,7 +989,7 @@
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
     <script src="your-fullcalendar-js-file.js"></script>
-    <script>
+    <!-- <script>
       document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('appointmentForm');
     
@@ -1031,6 +1040,7 @@
         "Thank you for choosing ITeKloud We will be Connect you shortly."
       );
     });
-    </script>
+    </script> -->
+    <script src="calender.js"></script>
   </body>
 </html>
